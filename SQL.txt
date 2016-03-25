@@ -1,0 +1,90 @@
+/*
+ 
+* Mitchell Coding Exercise
+ 
+* Name: Anjana Vadivel
+ 
+*
+
+*/
+ 
+
+
+/* Create Database */
+
+
+CREATE DATABASE claimdb;
+
+
+
+/* Use Database */
+
+
+USE claimdb;
+
+
+
+/*Create Tables */
+
+
+/* Script to create table claimtype(claim_number,claimant_first_name,claimant_last_name,status,loss_date,loss_info,assigned_adjuster_id,vehicles)*/
+
+
+CREATE TABLE claimtype 
+(claim_number varchar(100) NOT NULL,
+	claimant_first_name varchar(100) NULL,
+	claimant_last_name varchar(100) NULL,
+	status varchar(100) NULL,
+	loss_date DATE NULL,
+    assigned_adjuster_id long NULL,
+    PRIMARY KEY (claim_number)
+);
+
+
+
+/* Script to create table loss_info_type(id, cause_of_loss, reported_date, loss_description)*/
+
+
+CREATE TABLE loss_info_type (
+cause_of_loss varchar(100) NULL,
+	reported_date varchar(100) NULL,
+loss_description varchar(100) NULL,
+    claim_number varchar(100) NOT NULL,
+	FOREIGN KEY(claim_number) REFERENCES claimtype(claim_number) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+
+/* Script to create table vehicle_info_type(model_year,make_description,model_description,engine_description,exterior_color,vin,lic_plate,lic_plate_slate,lic_plate_exp_date,damage_description,mileage)*/
+
+
+CREATE TABLE vehicle_info_type (
+vin varchar(100) NULL,
+ model_year varchar(100) NOT NULL,
+    make_description varchar(100) NULL,
+    model_description varchar(100) NULL,
+    engine_description varchar(100) NULL,
+    exterior_color varchar(100) NULL,
+    lic_plate varchar(100) NULL,
+    lic_plate_slate varchar(100) NULL,
+    lic_plate_exp_date varchar(100) NULL,
+    damage_description varchar(100) NULL,
+    mileage varchar(100) NULL,
+    claim_number varchar(100) NOT NULL,
+	FOREIGN KEY(claim_number) REFERENCES claimtype(claim_number) ON DELETE CASCADE ON UPDATE CASCADE,
+	PRIMARY KEY(model_year)
+);
+
+
+
+Select * from claimtype;
+
+
+
+Select * from loss_info_type;
+
+
+
+Select * from vehicle_info_type;
+
+
