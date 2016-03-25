@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from MitchellWSService WSDL service -->
+
+  <service name="MitchellWS" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.web.com.mitchell"/>
+      <parameter name="wsdlServiceElement" value="MitchellWSService"/>
+      <parameter name="schemaQualified" value="http://service.web.com.mitchell"/>
+      <parameter name="wsdlServicePort" value="MitchellWS"/>
+      <parameter name="className" value="mitchell.com.web.service.MitchellWS"/>
+      <parameter name="wsdlPortType" value="MitchellWS"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.web.com.mitchell" xmlns:retNS="http://service.web.com.mitchell" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addValue" qname="operNS:addValue" returnQName="retNS:addValueReturn" returnType="rtns:float" soapAction="">
+        <parameter xmlns:pns="http://service.web.com.mitchell" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:value" type="tns:float"/>
+      </operation>
+      <operation xmlns:operNS="http://service.web.com.mitchell" xmlns:retNS="http://service.web.com.mitchell" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="subtractValue" qname="operNS:subtractValue" returnQName="retNS:subtractValueReturn" returnType="rtns:float" soapAction="">
+        <parameter xmlns:pns="http://service.web.com.mitchell" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:value" type="tns:float"/>
+      </operation>
+      <parameter name="allowedMethods" value="addValue subtractValue"/>
+
+  </service>
+</deployment>
